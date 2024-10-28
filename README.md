@@ -1,5 +1,3 @@
-# Network-Defense-Lab
-
 # Cybersecurity Virtual Lab: Network Defense & Threat Detection
 
 ## Overview
@@ -32,6 +30,9 @@ This project is a virtual cybersecurity lab developed to build and secure a fict
 
 ![Screenshot 2024-09-28 210727](https://github.com/user-attachments/assets/103799bd-daf3-4902-a270-07fbfb0f65e9)
 
+<br>
+<br>
+<br>
 
 ### 2. Intrusion Detection and Custom Signature Creation
 **Objective:** Monitor and detect reconnaissance attempts, specifically for stealthy scans like Nmap SYN scans targeting the firewall.
@@ -70,6 +71,9 @@ This project is a virtual cybersecurity lab developed to build and secure a fict
 
 ![IDS Stealth Scan detection alert](https://github.com/user-attachments/assets/f629135e-c171-4f87-8d98-fb2a84ea90a4)
 
+<br>
+<br>
+<br>
 
 ### 3. Proxy and Web Filtering Configuration
 **Objective:** Configure a transparent proxy using Squid in OPNSense and apply a blacklist to control and monitor network access.
@@ -91,20 +95,48 @@ This project is a virtual cybersecurity lab developed to build and secure a fict
 
 
 
+<br>
+<br>
+<br>
+
 ### 4. High Availability (HA) Configuration
 **Objective:** Ensure network resilience by setting up firewall redundancy with automatic failover.
+
+![Opnsese high availability firewall config](https://github.com/user-attachments/assets/8560784d-5137-442e-a818-379aacec3b52)
+
 
 **Walkthrough:**
 - Clone the primary OPNSense VM to create a backup firewall, ensuring configurations mirror each other.
 - **Interfaces:**
   - Primary firewall: Assign LAN IP `10.200.200.251`.
   - Backup firewall: Assign LAN IP `10.200.200.252`.
-  
+
+![Firewall Master Clone](https://github.com/user-attachments/assets/749e9dfb-325a-4c66-b52c-afb7781c6895)
+
+
 - **CARP Configuration:**
   - Configure the Virtual IPs: LAN as `10.200.200.254`, WAN as `10.0.2.254`.
   - Set up synchronization between primary and backup firewalls using pfSync to mirror configuration changes.
+ 
+![Virtual IP Configuration for Master Slave Firewall](https://github.com/user-attachments/assets/01bec433-7671-46e5-8879-9df1020356b2)
 
-- **Testing Failover:** Simulate a firewall outage, confirming that the backup takes over seamlessly, maintaining network connectivity.
+![Screenshot 2024-10-25 110722](https://github.com/user-attachments/assets/4087618f-f882-4f6d-9328-f1b109194ee8)
+
+![Firewall High Availabilty settings](https://github.com/user-attachments/assets/aea8f3a2-d317-4069-a324-e3853a86e21c)
+
+![Firewall NAT outbound rule](https://github.com/user-attachments/assets/7f1e110e-e3dc-44d1-b7ec-7026d6346880)
+
+
+
+- **Testing Failover:** Simulate a firewall outage, confirming that the backup takes over seamlessly, maintaining network connectivity. I did that by establishing a ping on both Master and Backup Firewalls. I then disconnected the Master Filewall cable connection in the virtual environment to simulate an outage. The redundant firewall immediately picked up the traffic and changed state to master. 
+
+![Firewall High Availability Results](https://github.com/user-attachments/assets/557fd7bc-1fbc-4031-86ef-debebe389cc8)
+
+
+<br>
+<br>
+<br>
+<br>
 
 ## Technologies & Skills Demonstrated
 - **Firewall & IDS/IPS:** Configured OPNSense with IDS/IPS rules for proactive security.
@@ -112,8 +144,10 @@ This project is a virtual cybersecurity lab developed to build and secure a fict
 - **High Availability:** Deployed CARP-based failover and pfSync for resilient firewall clustering.
 
 ## Future Enhancements
-- Integrate the ELK stack for enhanced threat hunting and monitoring.
-- Extend lab setup with Active Directory for user and policy management.
+- Setting up a SOC and configuring Wazuh as SIEM to collect threat and vulnerability information
+- Setting up TheHive case management system for Blue Team Operations
+- Setting up Cortex Observables Analysis & Response Engine
+- Setting up a SOAR for security automation and orchestration 
 
 ## Project Impact
 This lab is designed to showcase a wide range of cybersecurity competencies, including network security, system hardening, and advanced threat detection and prevention—essential skills for securing real-world enterprise networks.
